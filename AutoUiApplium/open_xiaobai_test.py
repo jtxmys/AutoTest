@@ -1,0 +1,20 @@
+# appium -a 127.0.0.1 -p 4723 -U 90a2a822  --no-reset
+from appium import webdriver
+# import win32com.client
+import os
+def openApp():
+    devn = os.popen('adb devices').read()
+    devicename = devn[25:33]
+    print(devicename)
+    desired_caps = {'platformName' :'Android',
+                    'platformVersion':'8.0.1',
+                    'deviceName':devicename,
+                    'appPackage':'com.android.bbkcalculator',
+                    'appActivity':'com.android.bbkcalculator.Calculator'
+    }
+    driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+
+
+if __name__ == '__main__':
+
+    openApp()
