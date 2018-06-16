@@ -2,15 +2,20 @@
 from appium import webdriver
 # import win32com.client
 import os
-def openApp():
-    devn = os.popen('adb devices').read()
+def openApp(apppackage='com.android.bbkcalculator',appActivity='com.android.bbkcalculator.Calculator'):
+    devn = os.popen('adb devices').read()#获取设备id
+    pfv = os.popen('adb shell getprop ro.build.version.release').read()#获取当前系统版本号
+    apppackage =  apppackage
+    appActivity = appActivity
+
     devicename = devn[25:33]
     print(devicename)
+
     desired_caps = {'platformName' :'Android',
-                    'platformVersion':'8.0.1',
+                    'platformVersion':pfv,
                     'deviceName':devicename,
-                    'appPackage':'com.android.bbkcalculator',
-                    'appActivity':'com.android.bbkcalculator.Calculator'
+                    'appPackage':apppackage,
+                    'appActivity':appActivity
     }
     driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
