@@ -2,15 +2,16 @@
 from appium import webdriver
 # import win32com.client
 import os
-def openApp(apppackage='com.android.bbkcalculator',appActivity='com.android.bbkcalculator.Calculator'):
+def openApp(apppackage='com.jinchenshenghui.xbzd',appActivity='.view.activity.home.MainActivity'):
     devn = os.popen('adb devices').read()#获取设备id
     pfv = os.popen('adb shell getprop ro.build.version.release').read()#获取当前系统版本号
     apppackage =  apppackage
     appActivity = appActivity
 
-    devicename = devn[25:33]
+    devicename = str(devn).split('\n')[1]
+    devicename = devicename.split('\t')[0]
     print(devicename)
-
+    print(devn,type(devn))
     desired_caps = {'platformName' :'Android',
                     'platformVersion':pfv,
                     'deviceName':devicename,
