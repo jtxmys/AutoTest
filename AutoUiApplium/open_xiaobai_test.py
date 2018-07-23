@@ -11,16 +11,17 @@ def openApp(apppackage='com.jinchenshenghui.xbzd',appActivity='.view.activity.ho
     devicename = str(devn).split('\n')[1]
     devicename = devicename.split('\t')[0]
     print(devicename)
-    print(devn,type(devn))
+    print(devn,type(devn),pfv,devicename)
     desired_caps = {'platformName' :'Android',
-                    'platformVersion':pfv,
-                    'deviceName':devicename,
+                    'platformVersion':'7.1.2',
+                    'deviceName':'vivo X9s',
                     'appPackage':apppackage,
                     'appActivity':appActivity
     }
-    driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 
 
 if __name__ == '__main__':
 
     openApp()
+    print('hello world')
